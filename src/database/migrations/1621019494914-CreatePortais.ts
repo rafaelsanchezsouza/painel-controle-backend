@@ -7,7 +7,7 @@ export class CreatePortais1621019494914 implements MigrationInterface {
         name: 'portais',
         columns: [
           {
-            name: 'cpnj',
+            name: 'cnpj',
             type: 'varchar',
             isPrimary: true,
           },
