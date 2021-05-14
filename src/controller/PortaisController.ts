@@ -7,14 +7,20 @@ class PortaisController {
 
     const portaisService = new PortaisService();
 
-    const portais = await portaisService.create({
-      cnpj,
-      nomeBase,
-      nomenclatura,
-      vencimento,
-    });
+    try {
+      const portais = await portaisService.create({
+        cnpj,
+        nomeBase,
+        nomenclatura,
+        vencimento,
+      });
 
-    return response.json(portais);
+      return response.json(portais);
+    } catch (err) {
+      return response.status(400).json({
+        message: err.message,
+      });
+    }
   }
 }
 

@@ -11,6 +11,12 @@ class PortaisService {
   async create({ cnpj, nomeBase, nomenclatura, vencimento }: IPortaisCreate) {
     const portaisRepositorio = getCustomRepository(PortaisRepository);
 
+    const usuarioJaExiste = await portaisRepositorio.findOne({ cnpj });
+
+    if (usuarioJaExiste) {
+      throw new Error('Portal já existente!');
+    }
+
     const portais = portaisRepositorio.create({
       cnpj,
       nomeBase,
