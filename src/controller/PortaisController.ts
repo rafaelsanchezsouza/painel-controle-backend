@@ -1,21 +1,18 @@
 import { Request, Response } from 'express';
-import { getCustomRepository } from 'typeorm';
-import { PortaisRepository } from '../repositories/PortaisRepository';
+import { PortaisService } from '../services/PortaisService';
 
 class PortaisController {
   async create(request: Request, response: Response) {
     const { cnpj, nomeBase, nomenclatura, vencimento } = request.body;
 
-    const portaisRepositorio = getCustomRepository(PortaisRepository);
+    const portaisService = new PortaisService();
 
-    const portais = portaisRepositorio.create({
+    const portais = await portaisService.create({
       cnpj,
       nomeBase,
       nomenclatura,
       vencimento,
     });
-
-    await portaisRepositorio.save(portais);
 
     return response.json(portais);
   }
