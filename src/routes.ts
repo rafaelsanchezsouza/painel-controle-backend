@@ -1,24 +1,12 @@
 import { Router } from 'express';
-import { getCustomRepository, RepositoryNotTreeError } from 'typeorm';
-import { PortaisRepository } from './repositories/PortaisRepository';
+
+// controllers
+import { PortaisController } from './controller/PortaisController';
 
 const routes = Router();
 
-routes.post('/portais', async (request, response) => {
-  const { cnpj, nomeBase, nomenclatura, vencimento } = request.body;
+const portaisController = new PortaisController();
 
-  const portaisRepositorio = getCustomRepository(PortaisRepository);
-
-  const portais = portaisRepositorio.create({
-    cnpj,
-    nomeBase,
-    nomenclatura,
-    vencimento,
-  });
-
-  await portaisRepositorio.save(portais);
-
-  return response.json(portais);
-});
+routes.post('/portais', portaisController.create);
 
 export { routes };
