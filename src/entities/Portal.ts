@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, OneToOne } from 'typeorm';
+import { Gestor } from './Gestor';
 
 @Entity('portais')
 class Portal {
@@ -13,6 +14,9 @@ class Portal {
 
   @Column()
   vencimento: string;
+  @OneToOne(() => Gestor, (gestor) => gestor.portal, {
+    cascade: ['insert', 'update'],
+  })
+  gestor: Gestor;
 }
-
 export { Portal };
