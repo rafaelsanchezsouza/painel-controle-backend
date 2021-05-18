@@ -9,8 +9,8 @@ import {
 } from 'typeorm';
 import { Portal } from './Portal';
 
-@Entity('gestores')
-class Gestor {
+@Entity('secretarios')
+class Secretario {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -32,9 +32,9 @@ class Gestor {
   @Column()
   portal_cnpj: string;
 
-  @OneToOne(() => Portal, (portal) => portal.gestor)
+  @OneToOne(() => Portal, (portal) => portal.secretario)
   @JoinColumn({ name: 'portal_cnpj' })
   portal: Portal;
 }
 
-export { Gestor };
+export { Secretario };

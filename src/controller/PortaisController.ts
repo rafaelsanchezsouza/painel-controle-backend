@@ -8,14 +8,14 @@ class PortaisController {
     const portaisService = new PortaisService();
 
     try {
-      const portais = await portaisService.create({
+      const portal = await portaisService.create({
         cnpj,
         nomeBase,
         nomenclatura,
         vencimento,
       });
 
-      return response.json(portais);
+      return response.json(portal);
     } catch (err) {
       return response.status(400).json({
         message: err.message,
