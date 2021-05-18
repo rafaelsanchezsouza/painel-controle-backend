@@ -12,6 +12,7 @@ const gestoresController = new GestoresController();
 const secretariosController = new SecretariosController();
 
 routes.post('/portais', portaisController.create);
+routes.get('/portais', portaisController.list);
 routes.post('/gestores', gestoresController.create);
 routes.post('/secretarios', secretariosController.create);
 
