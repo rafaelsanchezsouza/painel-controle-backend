@@ -23,6 +23,10 @@ export class CreatePortais1621019494914 implements MigrationInterface {
             name: 'vencimento',
             type: 'varchar',
           },
+          {
+            name: 'status',
+            type: 'varchar',
+          },
         ],
       })
     );

@@ -5,10 +5,17 @@ interface IPortaisCreate {
   nomeBase: string;
   nomenclatura: string;
   vencimento: string;
+  status: string;
 }
 
 class PortaisService {
-  async create({ cnpj, nomeBase, nomenclatura, vencimento }: IPortaisCreate) {
+  async create({
+    cnpj,
+    nomeBase,
+    nomenclatura,
+    vencimento,
+    status,
+  }: IPortaisCreate) {
     const portaisRepositorio = getCustomRepository(PortaisRepository);
 
     const portalJaExiste = await portaisRepositorio.findOne({ cnpj });
@@ -22,6 +29,7 @@ class PortaisService {
       nomeBase,
       nomenclatura,
       vencimento,
+      status,
     });
 
     await portaisRepositorio.save(portais);

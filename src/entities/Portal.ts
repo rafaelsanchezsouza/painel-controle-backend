@@ -16,6 +16,9 @@ class Portal {
   @Column()
   vencimento: string;
 
+  @Column()
+  status: string;
+
   @OneToOne(() => Gestor, (gestor) => gestor.portal, {
     cascade: ['insert', 'update'],
   })

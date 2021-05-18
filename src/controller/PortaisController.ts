@@ -3,7 +3,7 @@ import { PortaisService } from '../services/PortaisService';
 
 class PortaisController {
   async create(request: Request, response: Response) {
-    const { cnpj, nomeBase, nomenclatura, vencimento } = request.body;
+    const { cnpj, nomeBase, nomenclatura, vencimento, status } = request.body;
 
     const portaisService = new PortaisService();
 
@@ -13,6 +13,7 @@ class PortaisController {
         nomeBase,
         nomenclatura,
         vencimento,
+        status,
       });
 
       return response.json(portal);
