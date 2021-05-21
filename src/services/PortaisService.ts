@@ -36,6 +36,26 @@ class PortaisService {
 
     return portais;
   }
+  async update({
+    cnpj,
+    nomeBase,
+    nomenclatura,
+    vencimento,
+    status,
+  }: IPortaisCreate) {
+    const portaisRepositorio = getCustomRepository(PortaisRepository);
+
+    const portal = await portaisRepositorio.findOne({ cnpj });
+
+    portal.nomeBase = nomeBase || portal.nomeBase;
+    portal.nomenclatura = nomenclatura || portal.nomenclatura;
+    portal.vencimento = vencimento || portal.vencimento;
+    portal.status = status || portal.status;
+
+    await portaisRepositorio.save(portal);
+
+    return portal;
+  }
 }
 
 export { PortaisService };

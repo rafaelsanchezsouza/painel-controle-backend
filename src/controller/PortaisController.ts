@@ -8,7 +8,6 @@ class PortaisController {
     const { cnpj, nomeBase, nomenclatura, vencimento, status } = request.body;
 
     const portaisService = new PortaisService();
-
     try {
       const portal = await portaisService.create({
         cnpj,
@@ -42,17 +41,36 @@ class PortaisController {
   }
 
   async show(request: Request, response: Response) {
-    const nomeBaseRequest = request.params;
-    console.log('request.params: ');
-    console.log(request.params);
     const portaisRepository = getRepository(Portal);
-
+    console.log('request.params.nomeBase: ');
+    console.log(request.params.nomeBase);
     try {
       const portal = await portaisRepository.find({
-        where: nomeBaseRequest,
+        where: { nomeBase: request.params.nomeBase },
       });
-      console.log(portal);
+
       return response.json(portal);
+    } catch (err) {
+      return response.status(400).json({
+        message: err.message,
+      });
+    }
+  }
+
+  async update(request: Request, response: Response) {
+    const cnpj = request.params.portal_cnpj;
+    const { nomeBase, nomenclatura, vencimento, status } = request.body;
+
+    const portaisService = new PortaisService();
+    try {
+      const novoPortal = await portaisService.update({
+        cnpj,
+        nomeBase,
+        nomenclatura,
+        vencimento,
+        status,
+      });
+      return response.json(novoPortal);
     } catch (err) {
       return response.status(400).json({
         message: err.message,
