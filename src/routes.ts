@@ -13,6 +13,7 @@ const secretariosController = new SecretariosController();
 
 routes.post('/portais', portaisController.create);
 routes.get('/portais', portaisController.list);
+routes.get('/portais/:nomeBase', portaisController.show);
 routes.post('/gestores', gestoresController.create);
 routes.post('/secretarios', secretariosController.create);
 

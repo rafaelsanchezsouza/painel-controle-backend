@@ -40,6 +40,25 @@ class PortaisController {
       });
     }
   }
+
+  async show(request: Request, response: Response) {
+    const nomeBaseRequest = request.params;
+    console.log('request.params: ');
+    console.log(request.params);
+    const portaisRepository = getRepository(Portal);
+
+    try {
+      const portal = await portaisRepository.find({
+        where: nomeBaseRequest,
+      });
+      console.log(portal);
+      return response.json(portal);
+    } catch (err) {
+      return response.status(400).json({
+        message: err.message,
+      });
+    }
+  }
 }
 
 export { PortaisController };
