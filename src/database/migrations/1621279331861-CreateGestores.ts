@@ -7,12 +7,9 @@ export class CreateGestores1621279331861 implements MigrationInterface {
         name: 'gestores',
         columns: [
           {
-            name: 'id',
-            type: 'integer',
-            unsigned: true,
+            name: 'nomeBase',
+            type: 'varchar',
             isPrimary: true,
-            isGenerated: true,
-            generationStrategy: 'increment',
           },
           {
             name: 'nome',
@@ -36,17 +33,13 @@ export class CreateGestores1621279331861 implements MigrationInterface {
             type: 'timestamp',
             default: 'now()',
           },
-          {
-            name: 'portal_cnpj',
-            type: 'varchar',
-          },
         ],
         foreignKeys: [
           {
-            name: 'portal_cnpj',
-            columnNames: ['portal_cnpj'],
+            name: 'nomeBase',
+            columnNames: ['nomeBase'],
             referencedTableName: 'portais',
-            referencedColumnNames: ['cnpj'],
+            referencedColumnNames: ['nomeBase'],
             onUpdate: 'CASCADE',
             onDelete: 'CASCADE',
           },

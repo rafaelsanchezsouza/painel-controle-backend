@@ -1,8 +1,8 @@
 import { getCustomRepository } from 'typeorm';
 import { PortaisRepository } from '../repositories/PortaisRepository';
 interface IPortaisCreate {
-  cnpj: string;
   nomeBase: string;
+  cnpj: string;
   nomenclatura: string;
   vencimento: string;
   status: string;
@@ -10,23 +10,23 @@ interface IPortaisCreate {
 
 class PortaisService {
   async create({
-    cnpj,
     nomeBase,
+    cnpj,
     nomenclatura,
     vencimento,
     status,
   }: IPortaisCreate) {
     const portaisRepositorio = getCustomRepository(PortaisRepository);
 
-    const portalJaExiste = await portaisRepositorio.findOne({ cnpj });
+    const portalJaExiste = await portaisRepositorio.findOne({ nomeBase });
 
     if (portalJaExiste) {
       throw new Error('Portal já existente!');
     }
 
     const portais = portaisRepositorio.create({
-      cnpj,
       nomeBase,
+      cnpj,
       nomenclatura,
       vencimento,
       status,
@@ -37,17 +37,17 @@ class PortaisService {
     return portais;
   }
   async update({
-    cnpj,
     nomeBase,
+    cnpj,
     nomenclatura,
     vencimento,
     status,
   }: IPortaisCreate) {
     const portaisRepositorio = getCustomRepository(PortaisRepository);
 
-    const portal = await portaisRepositorio.findOne({ cnpj });
+    const portal = await portaisRepositorio.findOne({ nomeBase });
 
-    portal.nomeBase = nomeBase || portal.nomeBase;
+    portal.cnpj = cnpj || portal.cnpj;
     portal.nomenclatura = nomenclatura || portal.nomenclatura;
     portal.vencimento = vencimento || portal.vencimento;
     portal.status = status || portal.status;

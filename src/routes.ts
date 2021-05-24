@@ -15,14 +15,14 @@ const secretariosController = new SecretariosController();
 routes.post('/portais', portaisController.create);
 routes.get('/portais', portaisController.list);
 routes.get('/portais/:nomeBase', portaisController.show);
-routes.put('/portais/:portal_cnpj', portaisController.update);
+routes.put('/portais/:nomeBase', portaisController.update);
 
 // Gestores
 routes.post('/gestores', gestoresController.create);
-routes.put('/gestores/:portal_cnpj', gestoresController.update);
+routes.put('/gestores/:nomeBase', gestoresController.update);
 
 // Secretarios
 routes.post('/secretarios', secretariosController.create);
-routes.put('/secretarios/:portal_cnpj', secretariosController.update);
+routes.put('/secretarios/:nomeBase', secretariosController.update);
 
 export { routes };

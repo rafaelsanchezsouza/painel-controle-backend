@@ -3,16 +3,16 @@ import { GestoresService } from '../services/GestoresService';
 
 class GestoresController {
   async create(request: Request, response: Response) {
-    const { nome, email, telefone, portal_cnpj } = request.body;
+    const { nomeBase, nome, email, telefone } = request.body;
 
     const gestoresService = new GestoresService();
 
     try {
       const gestor = await gestoresService.create({
+        nomeBase,
         nome,
         email,
         telefone,
-        portal_cnpj,
       });
 
       return response.json(gestor);
@@ -24,16 +24,16 @@ class GestoresController {
   }
 
   async update(request: Request, response: Response) {
-    const portal_cnpj = request.params.portal_cnpj;
+    const nomeBase = request.params.nomeBase;
     const { nome, email, telefone } = request.body;
 
     const gestoresService = new GestoresService();
     try {
       const novoGestor = await gestoresService.update({
+        nomeBase,
         nome,
         email,
         telefone,
-        portal_cnpj,
       });
       return response.json(novoGestor);
     } catch (err) {

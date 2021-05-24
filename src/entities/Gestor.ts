@@ -1,7 +1,7 @@
 import {
   Entity,
   Column,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
   OneToOne,
   JoinColumn,
   CreateDateColumn,
@@ -11,8 +11,8 @@ import { Portal } from './Portal';
 
 @Entity('gestores')
 class Gestor {
-  @PrimaryGeneratedColumn('increment')
-  id: number;
+  @PrimaryColumn()
+  nomeBase: string;
 
   @Column()
   nome: string;
@@ -29,11 +29,8 @@ class Gestor {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @Column()
-  portal_cnpj: string;
-
   @OneToOne(() => Portal, (portal) => portal.gestor)
-  @JoinColumn({ name: 'portal_cnpj' })
+  @JoinColumn({ name: 'nomeBase' })
   portal: Portal;
 }
 

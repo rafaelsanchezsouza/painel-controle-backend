@@ -5,13 +5,13 @@ import { PortaisService } from '../services/PortaisService';
 
 class PortaisController {
   async create(request: Request, response: Response) {
-    const { cnpj, nomeBase, nomenclatura, vencimento, status } = request.body;
+    const { nomeBase, cnpj, nomenclatura, vencimento, status } = request.body;
 
     const portaisService = new PortaisService();
     try {
       const portal = await portaisService.create({
-        cnpj,
         nomeBase,
+        cnpj,
         nomenclatura,
         vencimento,
         status,
@@ -42,12 +42,9 @@ class PortaisController {
 
   async show(request: Request, response: Response) {
     const portaisRepository = getRepository(Portal);
-    console.log('request.params.nomeBase: ');
-    console.log(request.params.nomeBase);
     try {
-      const portal = await portaisRepository.find({
-        where: { nomeBase: request.params.nomeBase },
-      });
+      const nomeBase = request.params.nomeBase;
+      const portal = await portaisRepository.findOneOrFail({ nomeBase });
 
       return response.json(portal);
     } catch (err) {
@@ -58,14 +55,14 @@ class PortaisController {
   }
 
   async update(request: Request, response: Response) {
-    const cnpj = request.params.portal_cnpj;
-    const { nomeBase, nomenclatura, vencimento, status } = request.body;
+    const nomeBase = request.params.nomeBase;
+    const { cnpj, nomenclatura, vencimento, status } = request.body;
 
     const portaisService = new PortaisService();
     try {
       const novoPortal = await portaisService.update({
-        cnpj,
         nomeBase,
+        cnpj,
         nomenclatura,
         vencimento,
         status,

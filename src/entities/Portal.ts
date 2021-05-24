@@ -5,10 +5,10 @@ import { Secretario } from './Secretario';
 @Entity('portais')
 class Portal {
   @PrimaryColumn()
-  cnpj: string;
+  nomeBase: string;
 
   @Column()
-  nomeBase: string;
+  cnpj: string;
 
   @Column()
   nomenclatura: string;

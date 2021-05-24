@@ -2,18 +2,18 @@ import { getCustomRepository } from 'typeorm';
 import { GestoresRepository } from '../repositories/GestoresRepository';
 
 interface IGestoresCreate {
+  nomeBase: string;
   nome: string;
   email: string;
   telefone: string;
-  portal_cnpj: string;
 }
 
 class GestoresService {
-  async create({ nome, email, telefone, portal_cnpj }: IGestoresCreate) {
+  async create({ nomeBase, nome, email, telefone }: IGestoresCreate) {
     const gestoresRepositorio = getCustomRepository(GestoresRepository);
 
-    const gestorJaExiste = await gestoresRepositorio.find({
-      where: { portal_cnpj: portal_cnpj },
+    const gestorJaExiste = await gestoresRepositorio.findOne({
+      nomeBase,
     });
 
     if (gestorJaExiste) {
@@ -21,20 +21,20 @@ class GestoresService {
     }
 
     const gestor = gestoresRepositorio.create({
+      nomeBase,
       nome,
       email,
       telefone,
-      portal_cnpj,
     });
 
     await gestoresRepositorio.save(gestor);
 
     return gestor;
   }
-  async update({ nome, email, telefone, portal_cnpj }: IGestoresCreate) {
+  async update({ nomeBase, nome, email, telefone }: IGestoresCreate) {
     const gestoresRepositorio = getCustomRepository(GestoresRepository);
 
-    const gestor = await gestoresRepositorio.findOne({ portal_cnpj });
+    const gestor = await gestoresRepositorio.findOne({ nomeBase });
 
     gestor.nome = nome || gestor.nome;
     gestor.email = email || gestor.email;

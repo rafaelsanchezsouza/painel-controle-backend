@@ -3,16 +3,16 @@ import { SecretariosService } from '../services/SecretariosService';
 
 class SecretariosController {
   async create(request: Request, response: Response) {
-    const { nome, email, telefone, portal_cnpj } = request.body;
+    const { nomeBase, nome, email, telefone } = request.body;
 
     const secretariosService = new SecretariosService();
 
     try {
       const secretario = await secretariosService.create({
+        nomeBase,
         nome,
         email,
         telefone,
-        portal_cnpj,
       });
 
       return response.json(secretario);
@@ -23,16 +23,16 @@ class SecretariosController {
     }
   }
   async update(request: Request, response: Response) {
-    const portal_cnpj = request.params.portal_cnpj;
+    const nomeBase = request.params.nomeBase;
     const { nome, email, telefone } = request.body;
 
     const secretariosService = new SecretariosService();
     try {
       const novoSecretario = await secretariosService.update({
+        nomeBase,
         nome,
         email,
         telefone,
-        portal_cnpj,
       });
       return response.json(novoSecretario);
     } catch (err) {

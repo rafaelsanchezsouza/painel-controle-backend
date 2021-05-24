@@ -2,18 +2,18 @@ import { getCustomRepository } from 'typeorm';
 import { SecretariosRepository } from '../repositories/SecretariosRepository';
 
 interface ISecretariosCreate {
+  nomeBase: string;
   nome: string;
   email: string;
   telefone: string;
-  portal_cnpj: string;
 }
 
 class SecretariosService {
-  async create({ nome, email, telefone, portal_cnpj }: ISecretariosCreate) {
+  async create({ nomeBase, nome, email, telefone }: ISecretariosCreate) {
     const secretariosRepositorio = getCustomRepository(SecretariosRepository);
 
-    const secretarioJaExiste = await secretariosRepositorio.find({
-      where: { portal_cnpj: portal_cnpj },
+    const secretarioJaExiste = await secretariosRepositorio.findOne({
+      nomeBase,
     });
 
     if (secretarioJaExiste) {
@@ -21,10 +21,10 @@ class SecretariosService {
     }
 
     const secretario = secretariosRepositorio.create({
+      nomeBase,
       nome,
       email,
       telefone,
-      portal_cnpj,
     });
 
     await secretariosRepositorio.save(secretario);
@@ -32,10 +32,10 @@ class SecretariosService {
     return secretario;
   }
 
-  async update({ nome, email, telefone, portal_cnpj }: ISecretariosCreate) {
+  async update({ nomeBase, nome, email, telefone }: ISecretariosCreate) {
     const secretariosRepositorio = getCustomRepository(SecretariosRepository);
 
-    const secretario = await secretariosRepositorio.findOne({ portal_cnpj });
+    const secretario = await secretariosRepositorio.findOne({ nomeBase });
 
     secretario.nome = nome || secretario.nome;
     secretario.email = email || secretario.email;
