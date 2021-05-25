@@ -1,5 +1,6 @@
 import { getCustomRepository } from 'typeorm';
 import { GestoresRepository } from '../repositories/GestoresRepository';
+import { PortaisRepository } from '../repositories/PortaisRepository';
 
 interface IGestoresCreate {
   nomeBase: string;
@@ -11,6 +12,15 @@ interface IGestoresCreate {
 class GestoresService {
   async create({ nomeBase, nome, email, telefone }: IGestoresCreate) {
     const gestoresRepositorio = getCustomRepository(GestoresRepository);
+    const portaisRepositorio = getCustomRepository(PortaisRepository);
+
+    const portalJaExiste = await portaisRepositorio.findOne({
+      nomeBase,
+    });
+
+    if (!portalJaExiste) {
+      throw new Error('Portal não encontrado!');
+    }
 
     const gestorJaExiste = await gestoresRepositorio.findOne({
       nomeBase,

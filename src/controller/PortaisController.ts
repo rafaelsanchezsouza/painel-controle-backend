@@ -44,7 +44,9 @@ class PortaisController {
     const portaisRepository = getRepository(Portal);
     try {
       const nomeBase = request.params.nomeBase;
-      const portal = await portaisRepository.findOneOrFail({ nomeBase });
+      const portal = await portaisRepository.find({
+        relations: ['gestor', 'secretario'],
+      });
 
       return response.json(portal);
     } catch (err) {

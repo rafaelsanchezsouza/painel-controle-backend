@@ -3,7 +3,8 @@ import { GestoresService } from '../services/GestoresService';
 
 class GestoresController {
   async create(request: Request, response: Response) {
-    const { nomeBase, nome, email, telefone } = request.body;
+    const { nomeBase } = request.params;
+    const { nome, email, telefone } = request.body;
 
     const gestoresService = new GestoresService();
 
@@ -24,7 +25,7 @@ class GestoresController {
   }
 
   async update(request: Request, response: Response) {
-    const nomeBase = request.params.nomeBase;
+    const { nomeBase } = request.params;
     const { nome, email, telefone } = request.body;
 
     const gestoresService = new GestoresService();

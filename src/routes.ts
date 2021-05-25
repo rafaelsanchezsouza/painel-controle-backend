@@ -18,11 +18,11 @@ routes.get('/portais/:nomeBase', portaisController.show);
 routes.put('/portais/:nomeBase', portaisController.update);
 
 // Gestores
-routes.post('/gestores', gestoresController.create);
-routes.put('/gestores/:nomeBase', gestoresController.update);
+routes.post('/:nomeBase/gestores', gestoresController.create);
+routes.put('/:nomeBase/gestores/', gestoresController.update);
 
 // Secretarios
-routes.post('/secretarios', secretariosController.create);
-routes.put('/secretarios/:nomeBase', secretariosController.update);
+routes.post('/:nomeBase/secretarios', secretariosController.create);
+routes.put('/:nomeBase/secretarios/', secretariosController.update);
 
 export { routes };
