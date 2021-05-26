@@ -28,13 +28,13 @@ class SecretariosController {
 
     const secretariosService = new SecretariosService();
     try {
-      const novoSecretario = await secretariosService.update({
+      const secretarioAtualizado = await secretariosService.update({
         nomeBase,
         nome,
         email,
         telefone,
       });
-      return response.json(novoSecretario);
+      return response.json(secretarioAtualizado);
     } catch (err) {
       return response.status(400).json({
         message: err.message,

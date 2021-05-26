@@ -30,13 +30,13 @@ class GestoresController {
 
     const gestoresService = new GestoresService();
     try {
-      const novoGestor = await gestoresService.update({
+      const gestorAtualizado = await gestoresService.update({
         nomeBase,
         nome,
         email,
         telefone,
       });
-      return response.json(novoGestor);
+      return response.json(gestorAtualizado);
     } catch (err) {
       return response.status(400).json({
         message: err.message,

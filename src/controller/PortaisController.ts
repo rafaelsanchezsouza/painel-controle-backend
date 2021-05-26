@@ -45,6 +45,7 @@ class PortaisController {
     try {
       const nomeBase = request.params.nomeBase;
       const portal = await portaisRepository.find({
+        where: { nomeBase: nomeBase },
         relations: ['gestor', 'secretario'],
       });
 
