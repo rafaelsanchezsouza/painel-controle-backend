@@ -18,6 +18,7 @@ routes.post('/portais', portaisController.create);
 routes.get('/portais', portaisController.list);
 routes.get('/portais/:nomeBase', portaisController.show);
 routes.put('/portais/:nomeBase', portaisController.update);
+routes.delete('/portais/:nomeBase', portaisController.delete);
 
 // Gestores
 routes.post('/:nomeBase/gestores', gestoresController.create);

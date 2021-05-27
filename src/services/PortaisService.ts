@@ -24,7 +24,11 @@ class PortaisService {
       throw new Error('Portal já existente!');
     }
 
-    const portais = portaisRepositorio.create({
+    if (nomeBase == '') {
+      throw new Error('Nome Base inválido!');
+    }
+
+    const portal = portaisRepositorio.create({
       nomeBase,
       cnpj,
       nomenclatura,
@@ -32,9 +36,9 @@ class PortaisService {
       status,
     });
 
-    await portaisRepositorio.save(portais);
+    await portaisRepositorio.save(portal);
 
-    return portais;
+    return portal;
   }
   async update({
     nomeBase,

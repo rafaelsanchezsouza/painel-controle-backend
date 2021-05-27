@@ -77,6 +77,22 @@ class PortaisController {
       });
     }
   }
+
+  async delete(request: Request, response: Response) {
+    const nomeBase = request.params.nomeBase;
+    const portaisRepositorio = getRepository(Portal);
+    try {
+      const portal = await portaisRepositorio.findOne({ nomeBase });
+
+      await portaisRepositorio.delete(portal);
+
+      return response.json({ message: 'Portal excluido com sucesso' });
+    } catch (err) {
+      return response.status(400).json({
+        message: err.message,
+      });
+    }
+  }
 }
 
 export { PortaisController };
