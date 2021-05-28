@@ -1,32 +1,28 @@
 import { Router } from 'express';
 
 // controllers
-import { PortaisController } from './controller/PortaisController';
-import { GestoresController } from './controller/GestoresController';
-import { SecretariosController } from './controller/SecretariosController';
+import { EmpresasController } from './controller/EmpresasController';
 import { StatusController } from './controller/StatusController';
 
 const routes = Router();
 
-const portaisController = new PortaisController();
-const gestoresController = new GestoresController();
-const secretariosController = new SecretariosController();
+const empresasController = new EmpresasController();
 const statusController = new StatusController();
 
 // Portais
-routes.post('/portais', portaisController.create);
-routes.get('/portais', portaisController.list);
-routes.get('/portais/:nomeBase', portaisController.show);
-routes.put('/portais/:nomeBase', portaisController.update);
-routes.delete('/portais/:nomeBase', portaisController.delete);
+routes.post('/empresas', empresasController.create);
+routes.get('/empresas', empresasController.listAll);
+routes.get('/empresas/:id', empresasController.showById);
+routes.put('/empresas/:id', empresasController.update);
+routes.delete('/empresas/:id', empresasController.delete);
 
-// Gestores
-routes.post('/:nomeBase/gestores', gestoresController.create);
-routes.put('/:nomeBase/gestores', gestoresController.update);
+// // Gestores
+// routes.post('/:nomeBase/gestores', gestoresController.create);
+// routes.put('/:nomeBase/gestores', gestoresController.update);
 
-// Secretarios
-routes.post('/:nomeBase/secretarios', secretariosController.create);
-routes.put('/:nomeBase/secretarios', secretariosController.update);
+// // Secretarios
+// routes.post('/:nomeBase/secretarios', secretariosController.create);
+// routes.put('/:nomeBase/secretarios', secretariosController.update);
 
 // Status
 routes.post('/status', statusController.create);
