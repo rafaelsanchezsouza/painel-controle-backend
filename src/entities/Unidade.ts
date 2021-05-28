@@ -20,7 +20,7 @@ class Unidade {
   nome: string;
 
   @Column()
-  cnpj: string;
+  endereco: string;
 
   @CreateDateColumn()
   created_at: Date;
