@@ -13,8 +13,15 @@ class AtivosController {
       usuario,
     } = request.body;
 
+    console.log('Antes do Request');
+
     const requestImage = request.file.filename;
+    console.log('Depois do Request');
+    console.log(request.file);
     const imagemAtivo = { path: requestImage };
+
+    console.log('imagemAtivo');
+    console.log(imagemAtivo);
 
     const ativosService = new AtivosService();
     try {

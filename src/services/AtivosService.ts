@@ -22,7 +22,6 @@ interface IAtivosUpdate {
   descricao: string;
   status: string;
   saude: string;
-  imagemAtivo: { path: string };
   unidade: Unidade;
   usuario: Usuario;
 }
