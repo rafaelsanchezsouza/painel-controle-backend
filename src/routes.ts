@@ -6,8 +6,8 @@ import uploadConfig from './config/upload';
 import { EmpresasController } from './controller/EmpresasController';
 import { StatusController } from './controller/StatusController';
 // import { UnidadesController } from './controller/UnidadesController';
-// import { UsuariosController } from './controller/UsuariosController';
-// import { AtivosController } from './controller/AtivosController';
+import { UsuariosController } from './controller/UsuariosController';
+import { AtivosController } from './controller/AtivosController';
 
 const routes = Router();
 const upload = multer(uploadConfig);
@@ -15,8 +15,8 @@ const upload = multer(uploadConfig);
 const empresasController = new EmpresasController();
 const statusController = new StatusController();
 // const unidadesController = new UnidadesController();
-// const usuariosController = new UsuariosController();
-// const ativosController = new AtivosController();
+const usuariosController = new UsuariosController();
+const ativosController = new AtivosController();
 
 // Portais
 routes.post('/empresas', empresasController.create);
@@ -32,19 +32,19 @@ routes.delete('/empresas/:id', empresasController.delete);
 // routes.put('/unidades/:id', unidadesController.update);
 // routes.delete('/unidades/:id', unidadesController.delete);
 
-// // Usuarios
-// routes.post('/usuarios', usuariosController.create);
-// routes.get('/usuarios', usuariosController.listAll);
-// routes.get('/usuarios/:id', usuariosController.showById);
-// routes.put('/usuarios/:id', usuariosController.update);
-// routes.delete('/usuarios/:id', usuariosController.delete);
+// Usuarios
+routes.post('/usuarios', usuariosController.create);
+routes.get('/usuarios', usuariosController.listAll);
+routes.get('/usuarios/:id', usuariosController.showById);
+routes.put('/usuarios/:id', usuariosController.update);
+routes.delete('/usuarios/:id', usuariosController.delete);
 
-// Ativos
-// routes.post('/ativos', ativosController.create);
-// routes.get('/ativos', ativosController.listAll);
-// routes.get('/ativos/:id', ativosController.showById);
-// routes.put('/ativos/:id', ativosController.update);
-// routes.delete('/ativos/:id', ativosController.delete);
+// Ativos;
+routes.post('/ativos', ativosController.create);
+routes.get('/ativos', ativosController.listAll);
+routes.get('/ativos/:id', ativosController.showById);
+routes.put('/ativos/:id', ativosController.update);
+routes.delete('/ativos/:id', ativosController.delete);
 
 // Status
 routes.post('/status', statusController.create);

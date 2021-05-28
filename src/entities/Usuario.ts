@@ -5,7 +5,9 @@ import {
   CreateDateColumn,
   PrimaryGeneratedColumn,
   ManyToOne,
+  OneToMany,
 } from 'typeorm';
+import { Ativo } from './Ativo';
 import { Empresa } from './Empresa';
 
 @Entity('usuarios')
@@ -19,18 +21,26 @@ class Usuario {
   @Column()
   email: string;
 
+  @Column()
+  telefone: string;
+
+  @Column()
+  departamento: string;
+
   @CreateDateColumn()
   created_at: Date;
 
   @CreateDateColumn()
   updated_at: Date;
 
-  @Column()
-  empresa_id: Date;
-
   @ManyToOne(() => Empresa, (empresa) => empresa.usuario)
   @JoinColumn({ name: 'empresa_id' })
   empresa: Empresa;
+
+  @OneToMany(() => Ativo, (ativo) => ativo.usuario, {
+    cascade: ['insert', 'update'],
+  })
+  ativo: Ativo;
 }
 
 export { Usuario };

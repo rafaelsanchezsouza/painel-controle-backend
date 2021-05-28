@@ -23,6 +23,14 @@ export class CreateUsuarios1622142379048 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'telefone',
+            type: 'varchar',
+          },
+          {
+            name: 'departamento',
+            type: 'varchar',
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',
