@@ -33,14 +33,14 @@ class Usuario {
   @CreateDateColumn()
   updated_at: Date;
 
-  @ManyToOne(() => Empresa, (empresa) => empresa.usuario)
+  @ManyToOne(() => Empresa, (empresa) => empresa.usuarios)
   @JoinColumn({ name: 'empresa_id' })
   empresa: Empresa;
 
   @OneToMany(() => Ativo, (ativo) => ativo.usuario, {
     cascade: ['insert', 'update'],
   })
-  ativo: Ativo;
+  ativos: Ativo[];
 }
 
 export { Usuario };

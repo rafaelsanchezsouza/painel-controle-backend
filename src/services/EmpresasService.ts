@@ -35,6 +35,7 @@ class EmpresasService {
 
     return empresa;
   }
+
   async update({ id, nome, cnpj }: IEmpresasUpdate) {
     const empresa = await this.empresasRepository.findOne({ id });
 

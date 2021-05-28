@@ -46,7 +46,9 @@ class UnidadesService {
   }
 
   async listAll() {
-    const unidades = await this.unidadesRepository.find();
+    const unidades = await this.unidadesRepository.find({
+      relations: ['ativos'],
+    });
 
     return unidades;
   }

@@ -28,13 +28,13 @@ class Unidade {
   @CreateDateColumn()
   updated_at: Date;
 
-  @ManyToOne(() => Empresa, (empresa) => empresa.unidade)
+  @ManyToOne(() => Empresa, (empresa) => empresa.unidades)
   @JoinColumn({ name: 'empresa_id' })
   empresa: Empresa;
 
   @OneToMany(() => Ativo, (ativo) => ativo.unidade, {
     cascade: ['insert', 'update'],
   })
-  ativo: Ativo;
+  ativos: Ativo[];
 }
 export { Unidade };

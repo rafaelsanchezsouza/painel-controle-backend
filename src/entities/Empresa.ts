@@ -28,11 +28,11 @@ class Empresa {
   @OneToMany(() => Unidade, (unidade) => unidade.empresa, {
     cascade: ['insert', 'update'],
   })
-  unidade: Unidade;
+  unidades: Unidade[];
 
   @OneToMany(() => Usuario, (usuario) => usuario.empresa, {
     cascade: ['insert', 'update'],
   })
-  usuario: Usuario;
+  usuarios: Usuario[];
 }
 export { Empresa };

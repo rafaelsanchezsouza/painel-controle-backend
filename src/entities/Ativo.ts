@@ -43,11 +43,11 @@ class Ativo {
   })
   imagemAtivo: ImagemAtivo;
 
-  @ManyToOne(() => Unidade, (unidade) => unidade.ativo)
+  @ManyToOne(() => Unidade, (unidade) => unidade.ativos)
   @JoinColumn({ name: 'unidade_id' })
   unidade: Unidade;
 
-  @ManyToOne(() => Usuario, (usuario) => usuario.ativo)
+  @ManyToOne(() => Usuario, (usuario) => usuario.ativos)
   @JoinColumn({ name: 'usuario_id' })
   usuario: Usuario;
 }

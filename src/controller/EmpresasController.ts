@@ -19,6 +19,25 @@ class EmpresasController {
     }
   }
 
+  async update(request: Request, response: Response) {
+    const id = parseInt(request.params.id);
+    const { nome, cnpj } = request.body;
+
+    const empresasService = new EmpresasService();
+    try {
+      const novoPortal = await empresasService.update({
+        id,
+        nome,
+        cnpj,
+      });
+      return response.json(novoPortal);
+    } catch (err) {
+      return response.status(400).json({
+        message: err.message,
+      });
+    }
+  }
+
   async listAll(request: Request, response: Response) {
     const empresasService = new EmpresasService();
     try {
@@ -37,25 +56,6 @@ class EmpresasController {
     try {
       const empresa = await empresasService.findById(id);
       return response.json(empresa);
-    } catch (err) {
-      return response.status(400).json({
-        message: err.message,
-      });
-    }
-  }
-
-  async update(request: Request, response: Response) {
-    const id = parseInt(request.params.id);
-    const { nome, cnpj } = request.body;
-
-    const empresasService = new EmpresasService();
-    try {
-      const novoPortal = await empresasService.update({
-        id,
-        nome,
-        cnpj,
-      });
-      return response.json(novoPortal);
     } catch (err) {
       return response.status(400).json({
         message: err.message,

@@ -67,7 +67,9 @@ class UsuariosService {
   }
 
   async listAll() {
-    const usuarios = await this.usuariosRepository.find();
+    const usuarios = await this.usuariosRepository.find({
+      relations: ['ativos'],
+    });
 
     return usuarios;
   }
