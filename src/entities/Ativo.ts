@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { ImagemAtivo } from './ImagemAtivo';
 import { Unidade } from './Unidade';
+import { Usuario } from './Usuario';
 
 @Entity('ativos')
 class Ativo {
@@ -24,9 +25,6 @@ class Ativo {
 
   @Column()
   descricao: string;
-
-  @Column()
-  responsavel: string;
 
   @Column()
   status: string;
@@ -48,6 +46,10 @@ class Ativo {
   @ManyToOne(() => Unidade, (unidade) => unidade.ativo)
   @JoinColumn({ name: 'unidade_id' })
   unidade: Unidade;
+
+  @ManyToOne(() => Usuario, (usuario) => usuario.ativo)
+  @JoinColumn({ name: 'usuario_id' })
+  usuario: Usuario;
 }
 
 export { Ativo };

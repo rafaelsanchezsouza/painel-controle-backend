@@ -27,10 +27,6 @@ export class CreateAtivos1622140639777 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'responsavel',
-            type: 'varchar',
-          },
-          {
             name: 'status',
             type: 'varchar',
           },
@@ -52,12 +48,24 @@ export class CreateAtivos1622140639777 implements MigrationInterface {
             name: 'unidade_id',
             type: 'integer',
           },
+          {
+            name: 'usuario_id',
+            type: 'integer',
+          },
         ],
         foreignKeys: [
           {
             name: 'ativoUnidade',
             columnNames: ['unidade_id'],
             referencedTableName: 'unidades',
+            referencedColumnNames: ['id'],
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE',
+          },
+          {
+            name: 'ativoUsuario',
+            columnNames: ['usuario_id'],
+            referencedTableName: 'usuarios',
             referencedColumnNames: ['id'],
             onUpdate: 'CASCADE',
             onDelete: 'CASCADE',

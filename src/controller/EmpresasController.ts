@@ -1,6 +1,4 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
-import { Empresa } from '../entities/Empresa';
 import { EmpresasService } from '../services/EmpresasService';
 
 class EmpresasController {
