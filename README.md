@@ -1,6 +1,6 @@
 Hello World!
 
-This is the back-end project developed for the front-end dashboard:
+This is the back-end project developed for the [front-end dashboard](https://github.com/rafaelsanchezsouza/painel-controle-frontend).
 
 ### Built With
 
