@@ -49,7 +49,7 @@ class EmpresasService {
 
   async listAll() {
     const empresas = await this.empresasRepository.find({
-      relations: ['unidades', 'usuarios'],
+      relations: ['unidades', 'unidades.ativos', 'usuarios', 'usuarios.ativos'],
     });
 
     return empresas;
